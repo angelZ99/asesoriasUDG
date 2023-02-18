@@ -66,6 +66,7 @@ const App = () => {
 
   return (
     <SafeAreaView style={backgroundStyle}>
+      <Text>Agregado por Francisco</Text>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
