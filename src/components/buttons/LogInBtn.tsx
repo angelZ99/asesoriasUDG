@@ -40,18 +40,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: colors.yellow,
         borderRadius: 5,
-        width: 140,
-        height: 50,
+        height: 60,
         justifyContent: 'center',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 4
-        },
-        shadowOpacity: 0.30,
-        shadowRadius: 4.65,
-
-        elevation: 8,
     },
     btnText: {
         color: 'white',

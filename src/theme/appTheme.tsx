@@ -6,5 +6,7 @@ export const colors = {
     secondary : "#260F55",
     yellow : "#FFD700",
     black : "#000000",
+    gray : "#6B6B6B",
+    white : "#FDFDFD",
 }
 

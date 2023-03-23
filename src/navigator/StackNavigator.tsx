@@ -1,31 +1,48 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { LogIn } from '../screens/LogIn';
-import { Pagina2Screen } from '../screens/Pagina2Screen';
+import { RegisterScreen } from '../screens/RegisterScreen';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { HomeScreen } from '../screens/HomeScreen';
+import { LoadingScreen } from '../screens/LoadingScreen';
 
 
 //Definir que argumentos reciben las pantallas poner tambien en el stack
 export type RootStackParams = {
   LogIn: undefined,
-  Pagina2Screen: undefined,
+  RegisterScreen: undefined,
 }
 
 //Agregar el generico de RootStackParams 
 const Stack = createStackNavigator<RootStackParams>();
 
 export const StackNavigator = () => {
+
+  const {status} = useContext( AuthContext );
+
+  //if( status === 'checking') return <LoadingScreen/>;
+
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: {
-          elevation: 0,
-        },
-        cardStyle: {
-          backgroundColor: 'white'
-        }
+        headerShown: false,
       }}
     >
-      <Stack.Screen name="LogIn" options={{title: "LogIn"}} component={LogIn} />
-      <Stack.Screen name="Pagina2Screen" options={{title: "Página 2"}} component={Pagina2Screen} />
+
+      {/* Ternario paras validar que haya una sesión iniciado */}
+      {
+        ( status !== 'authenticated')
+          ? (
+            <>
+              <Stack.Screen name="LogIn" options={{title: "LogIn"}} component={LogIn} />
+              <Stack.Screen name="RegisterScreen" options={{title: "RegisterScreen"}} component={RegisterScreen} />
+            </>
+          )
+          : (
+            <Stack.Screen name="HomeScreen" options={{title: "HomeScreen"}} component={HomeScreen} />
+          )
+      }
+
     </Stack.Navigator>
   );
 };
